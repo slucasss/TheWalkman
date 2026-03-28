@@ -1,0 +1,21 @@
+{
+    "animations": {
+        "default": {
+            "frame_time": 0.15000000596046448,
+            "frames": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "loop": true
+        }
+    },
+    "frame_size": {
+        "height": 139,
+        "width": 269
+    },
+    "texture": "C:\\Users\\mbossoreille\\Downloads\\eau.png"
+}

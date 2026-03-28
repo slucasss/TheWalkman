@@ -1,0 +1,17 @@
+{
+    "animations": {
+        "bat": {
+            "frame_time": 0.20000000298023224,
+            "frames": [
+                0,
+                1
+            ],
+            "loop": true
+        }
+    },
+    "frame_size": {
+        "height": 112,
+        "width": 123
+    },
+    "texture": "C:\\Users\\lcatania\\Documents\\GitHub\\lyo-1-all-s2p5-07\\Assets\\BAT.png"
+}

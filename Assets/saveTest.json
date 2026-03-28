@@ -1,0 +1,21 @@
+{
+    "entities": [
+        {
+            "components": {
+                "MusicChangeLogic": {
+                    "Cooldown": 1.0,
+                    "MusicType": 0
+                },
+                "PlayerHealth": {
+                    "health": 3,
+                    "invulnerabilityCouldown": -36.4515266418457
+                },
+                "TransformComponent": {
+                    "x": 12136.0244140625,
+                    "y": 1439.390869140625
+                }
+            },
+            "id": 434
+        }
+    ]
+}

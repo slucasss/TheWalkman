@@ -1,0 +1,384 @@
+{
+    "automappingRulesFile": "",
+    "commands": [
+    ],
+    "compatibilityVersion": 1100,
+    "extensionsPath": "extensions",
+    "folders": [
+        "."
+    ],
+    "properties": [
+    ],
+    "propertyTypes": [
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 1,
+            "members": [
+                {
+                    "name": "Tag",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "CameraPOI",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        },
+        {
+            "color": "#ffffff7f",
+            "drawFill": true,
+            "id": 12,
+            "members": [
+            ],
+            "name": "Collectible",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "id": 10,
+            "members": [
+                {
+                    "name": "Angle",
+                    "type": "float",
+                    "value": 0.523598
+                },
+                {
+                    "name": "B",
+                    "type": "int",
+                    "value": 255
+                },
+                {
+                    "name": "DirX",
+                    "type": "float",
+                    "value": 0
+                },
+                {
+                    "name": "DirY",
+                    "type": "float",
+                    "value": -1
+                },
+                {
+                    "name": "G",
+                    "type": "int",
+                    "value": 255
+                },
+                {
+                    "name": "Intensity",
+                    "type": "float",
+                    "value": 1
+                },
+                {
+                    "name": "R",
+                    "type": "int",
+                    "value": 255
+                },
+                {
+                    "name": "Radius",
+                    "type": "float",
+                    "value": 200
+                }
+            ],
+            "name": "ConeLight",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        },
+        {
+            "color": "#ffa40003",
+            "drawFill": true,
+            "id": 9,
+            "members": [
+                {
+                    "name": "Monde",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "DamageZone",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        },
+        {
+            "color": "#ffffaa00",
+            "drawFill": true,
+            "id": 4,
+            "members": [
+                {
+                    "name": "Monde",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Tag",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "Door",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        },
+        {
+            "color": "#ff00aaff",
+            "drawFill": true,
+            "id": 2,
+            "members": [
+                {
+                    "name": "Direction",
+                    "type": "string",
+                    "value": "Any"
+                },
+                {
+                    "name": "Tag",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "ExplorationTrigger",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "id": 7,
+            "members": [
+                {
+                    "name": "Monde",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Tag",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "Ground",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "id": 3,
+            "members": [
+                {
+                    "name": "RenderLayer",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "ImageLayer",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "id": 8,
+            "members": [
+                {
+                    "name": "B",
+                    "type": "int",
+                    "value": 255
+                },
+                {
+                    "name": "G",
+                    "type": "int",
+                    "value": 255
+                },
+                {
+                    "name": "Intensity",
+                    "type": "float",
+                    "value": 1
+                },
+                {
+                    "name": "R",
+                    "type": "int",
+                    "value": 255
+                },
+                {
+                    "name": "Radius",
+                    "type": "float",
+                    "value": 200
+                }
+            ],
+            "name": "Light",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        },
+        {
+            "color": "#ffa40003",
+            "drawFill": true,
+            "id": 6,
+            "members": [
+                {
+                    "name": "Tag",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "Type",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "Platforms",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "id": 5,
+            "members": [
+                {
+                    "name": "Tag",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "PlayerSpawn",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "id": 13,
+            "members": [
+                {
+                    "name": "Tag",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "Trigger",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset",
+                "project"
+            ]
+        }
+    ]
+}

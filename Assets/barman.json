@@ -1,0 +1,17 @@
+{
+    "animations": {
+        "default": {
+            "frame_time": 0.5,
+            "frames": [
+                0,
+                1
+            ],
+            "loop": true
+        }
+    },
+    "frame_size": {
+        "height": 326,
+        "width": 306
+    },
+    "texture": "C:\\Users\\mbossoreille\\Downloads\\barman.png"
+}

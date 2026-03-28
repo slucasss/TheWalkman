@@ -1,0 +1,26 @@
+{
+    "animations": {
+        "dead": {
+            "frame_time": 0.11999999731779099,
+            "frames": [
+                4
+            ],
+            "loop": false
+        },
+        "walk": {
+            "frame_time": 0.09000000357627869,
+            "frames": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "loop": true
+        }
+    },
+    "frame_size": {
+        "height": 112,
+        "width": 309
+    },
+    "texture": "C:\\Users\\lcatania\\Documents\\GitHub\\lyo-1-all-s2p5-07\\Assets\\rat.png"
+}

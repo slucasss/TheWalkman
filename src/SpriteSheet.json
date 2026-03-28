@@ -1,0 +1,8 @@
+{
+ "frame_size":{"width": 32, "height":35},
+ "animations": {
+   "idle":{"frames":13, "loop":true, "id":0},
+   "run":{"frames":8, "loop":true, "id":1},
+   "hit":{"frames":10, "loop":false, "id":2}
+ }
+}
