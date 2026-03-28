@@ -3,6 +3,7 @@
 ![Language](https://img.shields.io/badge/language-C%2B%2B-blue)
 ![Platform](https://img.shields.io/badge/platform-Windows-lightgrey)
 ![Status](https://img.shields.io/badge/status-Completed-green)
+[![Linktree](https://img.shields.io/badge/Linktree-My%20Links-43E55E?logo=linktree&logoColor=white)](https://linktr.ee/TheWalkmanStudios)
 
 
 A platformer mixed with a rythme game created in two weeks by a team of 12(including programmers, artists and buisness members) in a homemade engine. 
