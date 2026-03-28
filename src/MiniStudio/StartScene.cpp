@@ -52,6 +52,7 @@ namespace {
 		SceneManager::GetInstance().FindSceneById("MainMenu")->SetInitalize(true);
 	}
 }
+
 StartScene::StartScene()
 {
 	atlas = new PropAtlas;
@@ -354,7 +355,7 @@ void StartScene::OnInitialize() {
 		CreateCollectible(info.source, info.x, info.y, info.rotation, { info.w, info.h });
 		AmbiantShader::Get()->AddLight({ info.x + 50.f, info.y-50.f }, 100.f, 3.f, { 1.f, 1.f, 1.f });
 		});
-
+	
 	m_loader->AddObjectLayerHandler("Npc", [this](tinyxml2::XMLElement* obj, Scene* scene, sf::Vector2f scale) {
 
 		float x = obj->FloatAttribute("x") * scale.x;
@@ -384,6 +385,7 @@ void StartScene::OnInitialize() {
 			Entity* Bat = CreateBat(x, y);
 			
 		});
+	
 	m_loader->AddObjectLayerHandler("RatSpawn", [this](tinyxml2::XMLElement* obj, Scene* scene, sf::Vector2f scale)
 		{
 			float x = obj->FloatAttribute("x") * scale.x;
@@ -408,6 +410,7 @@ void StartScene::OnInitialize() {
 			std::string tag = TiledUtils::GetProperty<std::string>(obj, "Tag", "ERROR");
 			BossSpawn->GetComponent<TagComponent>()->AddTag(tag);
 	});
+	
 	m_loader->AddObjectLayerHandler("RatSpawn", [this](tinyxml2::XMLElement* obj, Scene* scene, sf::Vector2f scale)
 		{
 			float x = obj->FloatAttribute("x") * scale.x;
@@ -524,165 +527,186 @@ void StartScene::OnInitialize() {
 	//Entity* ET = FindEntityWithTag("tag");
 	//ET->GetComponent<ExplorationTriggerLogic>()->SetOnExit([](CollisionSide side) {camera.TransitionTo("campoi")});
 
-	Entity* door = FindEntityWithTag("DoorToPunkBar");
-	door->GetComponent<DoorLogic>()->SetOnOpen([this](TransformComponent* playerTransform) {
-		if (FindEntityWithTag("Player")->GetComponent<Inventory>()->HasAllItems()) {
-			playerTransform->SetPosition(FindEntityWithTag("PunkBar")->GetComponent<TransformComponent>()->GetPosition());
-			FindEntityWithTag("Camera")->GetComponent<Camera>()->FadeIn(2.f);
-		}
-		});
-	door->GetComponent<DoorLogic>()->SetWaitOnEnter(2.f);
-
-	door->GetComponent<DoorLogic>()->SetOnClick([this]() {
-		if (FindEntityWithTag("Player")->GetComponent<Inventory>()->HasAllItems()) {	
-			FindEntityWithTag("Camera")->GetComponent<Camera>()->FadeOut(2.f);
-		}
-		});
-
-
-
-
-	m_rhythmSpawner = new RhythmSpawner(this, 6.f);
-	m_rhythmSpawner->LoadMap("../../../Assets/test2.json");
-
-
-
-
-	Load("../../../Assets/saveTest.json");
-	ShaderManager::Get()->SetCurrentMainShader("../../../src/Shaders/AmbiantShader.frag");
-
-	
-	for (Entity* entity : FindAllEntitiesWithTag("Jazz")) {
-		if (Sprite* sprite = entity->GetComponent<Sprite>()) sprite->SetVisible(false);
-		if (Collider* collider = entity->GetComponent<Collider>()) collider->SetActive(false);
-	}
-	for (Entity* entity : FindAllEntitiesWithTag("Rock")) {
-		if (Sprite* sprite = entity->GetComponent<Sprite>()) sprite->SetVisible(false);
-		if (Collider* collider = entity->GetComponent<Collider>()) collider->SetActive(false);
-	}
-	for (Entity* entity : FindAllEntitiesWithTag("postCollapse")) {
-		if (Sprite* sprite = entity->GetComponent<Sprite>()) sprite->SetVisible(false);
-		if (Collider* collider = entity->GetComponent<Collider>()) collider->SetActive(false);
-	}
-
-	Sprite* collapseSprite = FindEntityWithTag("ecroulement")->GetComponent<Sprite>();
-	collapseSprite->SetSrcRect(0, 0, 2680, 1000);
-
-	FindEntityWithTag("MusicChange")->GetComponent<Sprite>()->SetSrcRect(0, 0, 380, 206);
-	Entity* trigger1 = FindEntityWithTag("EntreeEgout1");
-	trigger1->GetComponent<ExplorationTriggerLogic>()->SetOnExit([this](CollisionSide side){
-		ShaderManager::Get()->SetParameter<float>("../../../src/Shaders/AmbiantShader.frag", "darkness", 0.9);
-		AmbiantShader::Get()->AddPlayer(FindEntityWithTag("Player"), 300.f, 2.0, { 255.f / 255, 255.f / 255.f, 255.f / 255.f });
-
-		//Entity* entity = FindEntityWithTag("POIEgout");
-		//FindEntityWithTag("Camera")->GetComponent<Camera>()->TransitionTo({ 4588.f, 1854.f, 2240.f, 1024.f }, 500, 500);
-		});
-	Entity* trigger2 = FindEntityWithTag("SortieEgout1");
-	trigger2->GetComponent<ExplorationTriggerLogic>()->SetOnExit([this](CollisionSide side){
-		ShaderManager::Get()->SetParameter<float>("../../../src/Shaders/AmbiantShader.frag", "darkness", 0.6);
-		AmbiantShader::Get()->AddPlayer(FindEntityWithTag("Player"), 200.f, 2.0, { 255.f / 255, 255.f / 255.f, 255.f / 255.f });
-
-		//FindEntityWithTag("Camera")->GetComponent<Camera>()->TransitionTo(FindEntityWithTag("Player"), {1280, 720}, 500, 500);
-		});
-	Entity* trigger3 = FindEntityWithTag("EntreeEgout2");
-	trigger3->GetComponent<ExplorationTriggerLogic>()->SetOnExit([this](CollisionSide side){
-		ShaderManager::Get()->SetParameter<float>("../../../src/Shaders/AmbiantShader.frag", "darkness", 0.9);
-		AmbiantShader::Get()->AddPlayer(FindEntityWithTag("Player"), 300.f, 2.0, { 255.f / 255, 255.f / 255.f, 255.f / 255.f });
-
-		//Entity* entity = FindEntityWithTag("POIEgout");
-		//FindEntityWithTag("Camera")->GetComponent<Camera>()->TransitionTo({4588.f, 1854.f, 2240.f, 1024.f}, 500, 500);
-		});
-	Entity* trigger4 = FindEntityWithTag("SortieEgout2");
-	trigger4->GetComponent<ExplorationTriggerLogic>()->SetOnExit([this](CollisionSide side){
-		ShaderManager::Get()->SetParameter<float>("../../../src/Shaders/AmbiantShader.frag", "darkness", 0.6);
-		AmbiantShader::Get()->AddPlayer(FindEntityWithTag("Player"), 200.f, 2.0, { 255.f / 255, 255.f / 255.f, 255.f / 255.f });
-
-		//FindEntityWithTag("Camera")->GetComponent<Camera>()->TransitionTo(FindEntityWithTag("Player"), {1280, 720}, 500, 500);
-		});
-	Entity* trigger5 = FindEntityWithTag("triggerCollapse");
-	trigger5->GetComponent<ExplorationTriggerLogic>()->SetOnExit([this](CollisionSide side) {
-
-		for (Entity* entity : FindAllEntitiesWithTag("temp")) {
-			entity->Destroy();
-		}
-
-		int musicType = FindEntityWithTag("Player")->GetComponent<MusicChange>()->GetMusicType();
-		std::string currentWorld;
-
-		switch (musicType)
-		{
-		case 0:
-			currentWorld = "DEFAULT";
-			break;
-		case 1:
-			currentWorld = "Jazz";
-			break;
-		case 2:
-			currentWorld = "Rock";
-			break;
-		}
-
-		FindEntityWithTag("Camera")->GetComponent<Camera>()->Shake(6.f, 10.f);
-		FindEntityWithTag("Collapse")->GetComponent<SoundEffect>()->PlaySoundEffect();
-
-		for (Entity* entity : FindAllEntitiesWithTag("postCollapse")) {
-			TagComponent* tc = entity->GetComponent<TagComponent>();
-			if(tc->Is(currentWorld) || (tc->Is("Jazz") == false && tc->Is("Rock") == false))
-			{
-				if (Sprite* sprite = entity->GetComponent<Sprite>()) sprite->SetVisible(true);
-				if (Collider* collider = entity->GetComponent<Collider>()) collider->SetActive(true);
+	{
+		Entity* door = FindEntityWithTag("DoorToPunkBar");
+		door->GetComponent<DoorLogic>()->SetOnOpen([this](TransformComponent* playerTransform) {
+			if (FindEntityWithTag("Player")->GetComponent<Inventory>()->HasAllItems()) {
+				playerTransform->SetPosition(FindEntityWithTag("PunkBar")->GetComponent<TransformComponent>()->GetPosition());
+				FindEntityWithTag("Camera")->GetComponent<Camera>()->FadeIn(2.f);
 			}
-		}
-		FindEntityWithTag("triggerCollapse")->Destroy();
-		});
+			});
+		door->GetComponent<DoorLogic>()->SetWaitOnEnter(2.f);
 
+		door->GetComponent<DoorLogic>()->SetOnClick([this]() {
+			if (FindEntityWithTag("Player")->GetComponent<Inventory>()->HasAllItems()) {
+				FindEntityWithTag("Camera")->GetComponent<Camera>()->FadeOut(2.f);
+			}
+			});
+	}
 	
+	{
+		Entity* door = FindEntityWithTag("DoorExitStringItem");
+		door->GetComponent<DoorLogic>()->SetOnOpen([this](TransformComponent* playerTransform) {
+			playerTransform->SetPosition(FindEntityWithTag("TpEgout")->GetComponent<TransformComponent>()->GetPosition());
+			FindEntityWithTag("Camera")->GetComponent<Camera>()->FadeIn(2.f);
+			});
+		door->GetComponent<DoorLogic>()->SetWaitOnEnter(2.f);
 
-	Entity* door2 = FindEntityWithTag("DoorToBossRoom");
-	door2->GetComponent<DoorLogic>()->SetOnOpen([this](TransformComponent* playerTransform) {
+		door->GetComponent<DoorLogic>()->SetOnClick([this]() {
+			FindEntityWithTag("Camera")->GetComponent<Camera>()->FadeOut(2.f);
+			});
+	}
 
-		FindEntityWithTag("Player")->GetComponent<Rigidbody2D>()->SetKinematic(true);
-		
-		Entity* camera2 = FindEntityWithTag("Camera");
-		camera2->GetComponent<Camera>()->FadeIn(1.f);
+	{
 
-		playerTransform->SetPosition(FindEntityWithTag("BossCameraPOI")->GetComponent<TransformComponent>()->GetPosition());
-		Entity* entity = FindEntityWithTag("Player");
-		entity->GetComponent<Sprite>()->SetVisible(false);
-		ShaderManager::Get()->SetParameter<float>("../../../src/Shaders/AmbiantShader.frag", "darkness", 0.2);
+		m_rhythmSpawner = new RhythmSpawner(this, 6.f);
+		m_rhythmSpawner->LoadMap("../../../Assets/test2.json");
 
-		sf::Vector2f pos1 = FindEntityWithTag("RythmeSpawn")->GetComponent<TransformComponent>()->GetPosition();
-		sf::Vector2f pos2 = FindEntityWithTag("HypeBarSpawn")->GetComponent<TransformComponent>()->GetPosition();
-		
-		FindEntityWithTag("healthBar")->GetComponent<Sprite>()->SetVisible(false);
-		FindEntityWithTag("MusicChange")->GetComponent<Sprite>()->SetVisible(false);
-		
-		for (Entity* e : FindAllEntitiesWithTag("Inventory")) {
-			e->GetComponent<Sprite>()->SetVisible(false);
+
+
+
+		Load("../../../Assets/saveTest.json");
+		ShaderManager::Get()->SetCurrentMainShader("../../../src/Shaders/AmbiantShader.frag");
+
+
+		for (Entity* entity : FindAllEntitiesWithTag("Jazz")) {
+			if (Sprite* sprite = entity->GetComponent<Sprite>()) sprite->SetVisible(false);
+			if (Collider* collider = entity->GetComponent<Collider>()) collider->SetActive(false);
+		}
+		for (Entity* entity : FindAllEntitiesWithTag("Rock")) {
+			if (Sprite* sprite = entity->GetComponent<Sprite>()) sprite->SetVisible(false);
+			if (Collider* collider = entity->GetComponent<Collider>()) collider->SetActive(false);
+		}
+		for (Entity* entity : FindAllEntitiesWithTag("postCollapse")) {
+			if (Sprite* sprite = entity->GetComponent<Sprite>()) sprite->SetVisible(false);
+			if (Collider* collider = entity->GetComponent<Collider>()) collider->SetActive(false);
 		}
 
-		CreateRythmEntities(pos1);
-		Entity* hypeBar = CreateHypeBar(pos2);
+		Sprite* collapseSprite = FindEntityWithTag("ecroulement")->GetComponent<Sprite>();
+		collapseSprite->SetSrcRect(0, 0, 2680, 1000);
 
-		FindEntityWithTag("Player")->GetComponent<PlayerMovement>()->SetInBossRoom(true);
-		
-		for (auto* s : FindEntityWithTag("AmbiantMusic")->GetAllComponents<Music>()) {
-			s->Stop();
-		}
+	}
 
-		m_rhythmSpawner->Stop();
-		m_rhythmSpawner->Play();
+	{
 
-		});
-	door2->GetComponent<DoorLogic>()->SetWaitOnEnter(2.5);
+		FindEntityWithTag("MusicChange")->GetComponent<Sprite>()->SetSrcRect(0, 0, 380, 206);
+		Entity* trigger1 = FindEntityWithTag("EntreeEgout1");
+		trigger1->GetComponent<ExplorationTriggerLogic>()->SetOnExit([this](CollisionSide side) {
+			ShaderManager::Get()->SetParameter<float>("../../../src/Shaders/AmbiantShader.frag", "darkness", 0.9);
+			AmbiantShader::Get()->AddPlayer(FindEntityWithTag("Player"), 300.f, 2.0, { 255.f / 255, 255.f / 255.f, 255.f / 255.f });
+
+			//Entity* entity = FindEntityWithTag("POIEgout");
+			//FindEntityWithTag("Camera")->GetComponent<Camera>()->TransitionTo({ 4588.f, 1854.f, 2240.f, 1024.f }, 500, 500);
+			});
+		Entity* trigger2 = FindEntityWithTag("SortieEgout1");
+		trigger2->GetComponent<ExplorationTriggerLogic>()->SetOnExit([this](CollisionSide side) {
+			ShaderManager::Get()->SetParameter<float>("../../../src/Shaders/AmbiantShader.frag", "darkness", 0.6);
+			AmbiantShader::Get()->AddPlayer(FindEntityWithTag("Player"), 200.f, 2.0, { 255.f / 255, 255.f / 255.f, 255.f / 255.f });
+
+			//FindEntityWithTag("Camera")->GetComponent<Camera>()->TransitionTo(FindEntityWithTag("Player"), {1280, 720}, 500, 500);
+			});
+		Entity* trigger3 = FindEntityWithTag("EntreeEgout2");
+		trigger3->GetComponent<ExplorationTriggerLogic>()->SetOnExit([this](CollisionSide side) {
+			ShaderManager::Get()->SetParameter<float>("../../../src/Shaders/AmbiantShader.frag", "darkness", 0.9);
+			AmbiantShader::Get()->AddPlayer(FindEntityWithTag("Player"), 300.f, 2.0, { 255.f / 255, 255.f / 255.f, 255.f / 255.f });
+
+			//Entity* entity = FindEntityWithTag("POIEgout");
+			//FindEntityWithTag("Camera")->GetComponent<Camera>()->TransitionTo({4588.f, 1854.f, 2240.f, 1024.f}, 500, 500);
+			});
+		Entity* trigger4 = FindEntityWithTag("SortieEgout2");
+		trigger4->GetComponent<ExplorationTriggerLogic>()->SetOnExit([this](CollisionSide side) {
+			ShaderManager::Get()->SetParameter<float>("../../../src/Shaders/AmbiantShader.frag", "darkness", 0.6);
+			AmbiantShader::Get()->AddPlayer(FindEntityWithTag("Player"), 200.f, 2.0, { 255.f / 255, 255.f / 255.f, 255.f / 255.f });
+
+			//FindEntityWithTag("Camera")->GetComponent<Camera>()->TransitionTo(FindEntityWithTag("Player"), {1280, 720}, 500, 500);
+			});
+		Entity* trigger5 = FindEntityWithTag("triggerCollapse");
+		trigger5->GetComponent<ExplorationTriggerLogic>()->SetOnExit([this](CollisionSide side) {
+
+			for (Entity* entity : FindAllEntitiesWithTag("temp")) {
+				entity->Destroy();
+			}
+
+			int musicType = FindEntityWithTag("Player")->GetComponent<MusicChange>()->GetMusicType();
+			std::string currentWorld;
+
+			switch (musicType)
+			{
+			case 0:
+				currentWorld = "DEFAULT";
+				break;
+			case 1:
+				currentWorld = "Jazz";
+				break;
+			case 2:
+				currentWorld = "Rock";
+				break;
+			}
+
+			FindEntityWithTag("Camera")->GetComponent<Camera>()->Shake(6.f, 10.f);
+			FindEntityWithTag("Collapse")->GetComponent<SoundEffect>()->PlaySoundEffect();
+
+			for (Entity* entity : FindAllEntitiesWithTag("postCollapse")) {
+				TagComponent* tc = entity->GetComponent<TagComponent>();
+				if (tc->Is(currentWorld) || (tc->Is("Jazz") == false && tc->Is("Rock") == false))
+				{
+					if (Sprite* sprite = entity->GetComponent<Sprite>()) sprite->SetVisible(true);
+					if (Collider* collider = entity->GetComponent<Collider>()) collider->SetActive(true);
+				}
+			}
+			FindEntityWithTag("triggerCollapse")->Destroy();
+			});
 
 
-	door2->GetComponent<DoorLogic>()->SetOnClick([this]() {
-		Entity* camera2 = FindEntityWithTag("Camera");
-		camera2->GetComponent<Camera>()->FadeOut(2.f);	
+	}
 
-		
-		});
+	{
+		Entity* door2 = FindEntityWithTag("DoorToBossRoom");
+		door2->GetComponent<DoorLogic>()->SetOnOpen([this](TransformComponent* playerTransform) {
+
+			FindEntityWithTag("Player")->GetComponent<Rigidbody2D>()->SetKinematic(true);
+
+			Entity* camera2 = FindEntityWithTag("Camera");
+			camera2->GetComponent<Camera>()->FadeIn(1.f);
+
+			playerTransform->SetPosition(FindEntityWithTag("BossCameraPOI")->GetComponent<TransformComponent>()->GetPosition());
+			Entity* entity = FindEntityWithTag("Player");
+			entity->GetComponent<Sprite>()->SetVisible(false);
+			ShaderManager::Get()->SetParameter<float>("../../../src/Shaders/AmbiantShader.frag", "darkness", 0.2);
+
+			sf::Vector2f pos1 = FindEntityWithTag("RythmeSpawn")->GetComponent<TransformComponent>()->GetPosition();
+			sf::Vector2f pos2 = FindEntityWithTag("HypeBarSpawn")->GetComponent<TransformComponent>()->GetPosition();
+
+			FindEntityWithTag("healthBar")->GetComponent<Sprite>()->SetVisible(false);
+			FindEntityWithTag("MusicChange")->GetComponent<Sprite>()->SetVisible(false);
+
+			for (Entity* e : FindAllEntitiesWithTag("Inventory")) {
+				e->GetComponent<Sprite>()->SetVisible(false);
+			}
+
+			CreateRythmEntities(pos1);
+			Entity* hypeBar = CreateHypeBar(pos2);
+
+			FindEntityWithTag("Player")->GetComponent<PlayerMovement>()->SetInBossRoom(true);
+
+			for (auto* s : FindEntityWithTag("AmbiantMusic")->GetAllComponents<Music>()) {
+				s->Stop();
+			}
+
+			m_rhythmSpawner->Stop();
+			m_rhythmSpawner->Play();
+
+			});
+		door2->GetComponent<DoorLogic>()->SetWaitOnEnter(2.5);
+
+
+		door2->GetComponent<DoorLogic>()->SetOnClick([this]() {
+			Entity* camera2 = FindEntityWithTag("Camera");
+			camera2->GetComponent<Camera>()->FadeOut(2.f);
+
+
+			});
+	}
 
 
 	{

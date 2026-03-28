@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-up" width="220" height="100" tilewidth="64" tileheight="64" infinite="0" nextlayerid="32" nextobjectid="1323">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="left-up" width="220" height="100" tilewidth="64" tileheight="64" infinite="0" nextlayerid="33" nextobjectid="1327">
  <tileset firstgid="1" source="Placeholder.tsx"/>
  <tileset firstgid="57" source="Props.tsx"/>
  <imagelayer id="25" name="Background" class="ImageLayer" offsetx="-3360.5" offsety="0" parallaxx="0.2">
@@ -1257,6 +1257,11 @@
     <property name="Tag" value="DoorToBossRoom"/>
    </properties>
   </object>
+  <object id="1324" x="3569.33" y="1430.67" width="377.333" height="232">
+   <properties>
+    <property name="Tag" value="DoorExitStringItem"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="4" name="ExplorationTrigger">
   <object id="1173" type="ExplorationTrigger" x="6316.17" y="1921.17" width="17.3333" height="510">
@@ -1342,6 +1347,7 @@
   <object id="1273" gid="124" x="13111.9" y="1643.6" width="73.5303" height="60.3607" rotation="323.08"/>
   <object id="1271" gid="122" x="1561.25" y="1086.48" width="87.3587" height="58.75" rotation="332.194"/>
  </objectgroup>
+ <objectgroup id="32" name="Consommable"/>
  <objectgroup id="23" name="DecorFrontPlayer">
   <object id="1028" type="ImageLayer" gid="102" x="1920" y="5312" width="1088.46" height="387.327"/>
   <object id="1029" gid="101" x="1918.39" y="5311.99" width="1088.45" height="387.324"/>
@@ -1392,6 +1398,12 @@
   <object id="1030" type="PlayerSpawn" x="1970.67" y="5218.67">
    <properties>
     <property name="Tag" value="PunkBar"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="1326" x="3358.67" y="1016">
+   <properties>
+    <property name="Tag" value="TpEgout"/>
    </properties>
    <point/>
   </object>

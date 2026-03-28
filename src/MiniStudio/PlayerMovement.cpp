@@ -129,8 +129,8 @@ void PlayerMovement::FixedUpdate()
 
 void PlayerMovement::Update(){
 	//m_owner->GetComponent<Rigidbody2D>()->SetKinematic(false);
-	if (SceneManager::GetInstance().GetCurrentScene()->FindEntityWithTag("Camera")->GetComponent<Camera>()->ShakeIsEnded() == false)
-		m_owner->GetComponent<Rigidbody2D>()->SetKinematic(true);
+	/*if (SceneManager::GetInstance().GetCurrentScene()->FindEntityWithTag("Camera")->GetComponent<Camera>()->ShakeIsEnded() == false)
+		m_owner->GetComponent<Rigidbody2D>()->SetKinematic(true);*/
 
 	m_isGrounded = m_groundedThisFrame;
 	m_groundedThisFrame = false;

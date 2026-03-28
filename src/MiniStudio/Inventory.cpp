@@ -35,6 +35,7 @@ bool Inventory::AddItem(const std::string& texturePath, sf::Vector2f itemScale)
                 Sprite* reward = m_slots[0].entity->GetComponent<Sprite>();
                 reward->SetOffset({ 75, 25 });
                 reward->SetTexture(m_rewardTexturePath);
+                reward->SetSrcRect(0, 0, 1026, 690);
                 m_slots[0].entity->GetComponent<TransformComponent>()->SetScale({0.25, 0.25});
                 m_slots[0].m_empty = false;
                 m_numItems = 1;

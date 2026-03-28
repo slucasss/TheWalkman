@@ -20,6 +20,8 @@ void ReloadSave() {
 
 void ReturnMenu() {
 	SceneManager::GetInstance().ChangeScene("MainMenu");
+	SceneManager::GetInstance().FindSceneById("Start")->DestroyAllEntities();
+	SceneManager::GetInstance().FindSceneById("Start")->SetInitalize(true);
 	SceneManager::GetInstance().FindSceneById("MainMenu")->SetInitalize(true);
 }
 
